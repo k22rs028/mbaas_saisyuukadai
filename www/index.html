@@ -16,29 +16,31 @@
         
 
         function enterData() {
-            let uTdata = new UTdata();
-            let value =  Math.floor(Math.random() * 999);
-            
-            uTdata.set(key, value)
-                .save()
-                .then(function(results) {
-                    $("#display").removeClass();
-                    $("#display").addClass("bg-success");
-                    $("#display").html("enter success");
-                })
-                .catch(function(results) {
-                    $("#display").removeClass();
-                    $("#display").addClass("bg-warning");
-                    $("#display").html("enter fail");
-                })
-            
+            let value = parseInt($("#data").val());
+            for(let i = 0; i < value; i++){
+                let uTdata = new UTdata();
+                 let value2 =  Math.floor(Math.random() * 999);            
+                uTdata.set(key, value2)
+                    .save()
+                    .then(function(results) {
+                        $("#display").removeClass();
+                        $("#display").addClass("bg-success");
+                        $("#display").html("enter success");
+                    })
+                    .catch(function(results) {
+                        $("#display").removeClass();
+                        $("#display").addClass("bg-warning");
+                        $("#display").html("enter fail");
+                    })
+                }
+            /*
             if(value % 2 == 0){
                $("#text3").html("あたり")
             }else{
                 $("#text3").html("");
             }
             $("#text2").html(value);
-            
+            */
         }
 
         function fetchAll() {
@@ -103,20 +105,22 @@
         }
 
         function deleteData() {
-            UTdata.fetch()
-            .then(function(results){
-                return results.delete();
+            UTdata.count().fetchAll()
+            .then(function(results1){
+                for(let i = 0; i < results1.length * 2; i++){
+                    UTdata.fetch()
+                    .then(function(results){
+                     return results.delete();
+                    })
+                }
+                for(let i = 0; i < results1.length * 2; i++){
+                    UTdata.fetch()
+                    .then(function(results){
+                     return results.delete();
+                    })
+                }
             })
-            .then(function(results){
-                $("#display").removeClass();
-                $("#display").addClass("bg-success");
-                $("#display").html("delete success");
-            })
-            .catch(function(error){
-                $("#display").removeClass();
-                $("#display").addClass("bg-warning");
-                $("#display").html("delete fail" + JSON.stringify(error));
-            })
+
         }
 
         function updateData() {
@@ -143,13 +147,14 @@
 <body>
     <h1 class="text-light bg-secondary">mbaas saisyuukadai</h1>
     <div>
+        <input type="text" id="data" placeholder="スコア">
         <a onclick="enterData()" class="btn btn-outline-secondary" role="button">Enter</a>
     </div>
     <div>
         <a onclick="fetchAll()" class="btn btn-outline-secondary" role="buton">Fetch All</a>
         <a onclick="sortData()" class="btn btn-outline-secondary" role="button">Sort</a>
         <a onclick="countData()" class="btn btn-outline-secondary" role="button">Count</a>
-        <a onclick="deleteData()" class="btn btn-outline-secondary" role="button">Delete</a>
+        <a onclick="deleteData()" class="btn btn-outline-secondary" role="button">AllDelete</a>
     </div>
     <div>
         <input type="text" id="update" placeholder="更新">
