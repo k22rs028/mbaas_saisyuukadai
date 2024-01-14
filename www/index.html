@@ -17,6 +17,9 @@
 
         function enterData() {
             let value = parseInt($("#data").val());
+            if(value > 100){
+                value = 100;
+            }
             for(let i = 0; i < value; i++){
                 let uTdata = new UTdata();
                  let value2 =  Math.floor(Math.random() * 999);            
@@ -33,7 +36,7 @@
                         $("#display").html("enter fail");
                     })
                 }
-                
+
         }
 
         function fetchAll() {
@@ -99,10 +102,10 @@
 
         function deleteData() {
             UTdata.count().fetchAll()
-                .then(function(result){
+                .then(function(results){
                      UTdata.fetchAll()
                         .then(function(results1){
-                        for(let i = 0; i < result.count; i++){
+                        for(let i = 0; i < results.count; i++){
                             console.log(i + " ");
                             //UTdata.fetch()
                             //.then(function(results){
@@ -158,20 +161,20 @@
 <body>
     <h1 class="text-light bg-secondary">おみくじ</h1>
     <div>
-        <input type="text" id="data" placeholder="スコア">
-        <a onclick="enterData()" class="btn btn-outline-secondary" role="button">Enter</a>
+        <input type="text" id="data" placeholder="御籤の数(100まで)">
+        <a onclick="enterData()" class="btn btn-outline-secondary" role="button">ランダムで御籤を作る</a>
     </div>
     <div>
-        <a onclick="fetchAll()" class="btn btn-outline-secondary" role="buton">Fetch All</a>
-        <a onclick="sortData()" class="btn btn-outline-secondary" role="button">Sort</a>
-        <a onclick="countData()" class="btn btn-outline-secondary" role="button">Count</a>
-        <a onclick="deleteData()" class="btn btn-outline-secondary" role="button">AllDelete</a>
+        <a onclick="fetchAll()" class="btn btn-outline-secondary" role="buton">中身の表示</a>
+        <a onclick="sortData()" class="btn btn-outline-secondary" role="button">中身を昇順で表示</a>
+        <a onclick="countData()" class="btn btn-outline-secondary" role="button">入っている御籤の数</a>
+        <a onclick="deleteData()" class="btn btn-outline-secondary" role="button">御籤をすべて消す</a>
     </div>
     <div>
-        <input type="text" id="data2" placeholder="更新">
-        <input type="text" id="data3" placeholder="更新">
-       <a onclick="enterData2()" class="btn btn-outline-secondary" role="button">Enter</a>
-       <a onclick="random()" class="btn btn-outline-secondary" role="button">random</a>
+        <input type="text" id="data2" placeholder="好きな数字を入力">
+        <input type="text" id="data3" placeholder="入力数(最低1 最大100)">
+       <a onclick="enterData2()" class="btn btn-outline-secondary" role="button">御籤に好きな数字を入れる</a>
+       <a onclick="random()" class="btn btn-outline-secondary" role="button">御籤を引く</a>
     <div id="display" class="text-light bg-info">
         Results
     </div>
