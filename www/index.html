@@ -123,18 +123,24 @@
          function enterData2() {
             let uTdata = new UTdata();
             let value2 = parseInt($("#data2").val());
-            uTdata.set(key, value2)
-                .save()
-                .then(function(results) {
-                    $("#display").removeClass();
-                    $("#display").addClass("bg-success");
-                    $("#display").html("enter success");
-                })
-                .catch(function(results) {
-                    $("#display").removeClass();
-                    $("#display").addClass("bg-warning");
-                    $("#display").html("enter fail");
-                })
+            let value3 = parseInt($("#data3").val());
+            if(value3 < 1 || value3 == null){
+                value3 = 1;
+            }
+            for(let i = 0; i < value3; i++){
+                uTdata.set(key, value2)
+                    .save()
+                    .then(function(results) {
+                        $("#display").removeClass();
+                        $("#display").addClass("bg-success");
+                        $("#display").html("enter success");
+                    })
+                    .catch(function(results) {
+                        $("#display").removeClass();
+                        $("#display").addClass("bg-warning");
+                        ("#display").html("enter fail");
+                    })
+                }
         }
     </script>
 </head>
