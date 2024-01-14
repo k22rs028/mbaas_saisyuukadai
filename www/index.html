@@ -103,24 +103,21 @@
             })
             
         }
-
+var countmax = 0;
         function deleteData() {
+            
             UTdata.count().fetchAll()
-            .then(function(results1){
-                for(let i = 0; i < results1.length * 2; i++){
-                    UTdata.fetch()
-                    .then(function(results){
-                     return results.delete();
+                .then(function(result){
+                     UTdata.fetchAll()
+                        .then(function(results1){
+                        for(let i = 0; i < result.count; i++){
+                            console.log(i + " ");
+                            //UTdata.fetch()
+                            //.then(function(results){
+                            results1[i].delete();
+                        }
                     })
-                }
-                for(let i = 0; i < results1.length * 2; i++){
-                    UTdata.fetch()
-                    .then(function(results){
-                     return results.delete();
-                    })
-                }
-            })
-
+                })
         }
 
         function updateData() {
