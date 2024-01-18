@@ -58,8 +58,12 @@
                 })
         }
 
+
+        let tmp4 = true;
         function sortData() {
-           UTdata.order(key, true).fetchAll()
+            if(tmp4){tmp4 = false;}
+            else{tmp4 = true;}
+           UTdata.order(key, tmp4).fetchAll()
                 .then(function(results) {
                     let msg = "";
                     for (let i = 0; i < results.length; i++) {
@@ -83,14 +87,17 @@
                 $("#display").removeClass();
                 $("#display").addClass("bg-success");
                 $("#display").html(results.count);
-
-                if((results.count %3)==0){
+                
+                if((results.count %4)==0){
                     $("body").css("background-color", "yellow");
-                }else if((results.count  %3)==1){
+                }else if((results.count  %4)==1){
                     $("body").css("background-color", "green");
-                }else{
+                }else if((results.count % 4)==2){
                     $("body").css("background-color", "skyblue");
+                }else{
+                    $("body").css("background-color", "white");
                 }
+                
             })
             .catch(function(error){
                 $("#display").removeClass();
@@ -145,7 +152,7 @@
                 let tmp = parseInt(results.count);
                 let tmp2 = parseInt(Math.floor(Math.random() * tmp));
                 let tmp3 = parseInt(results[tmp2].get("score"));
-                if(tmp3 % 2 == 0){
+                if(tmp3 % 3 == 0){
                     $("#text3").html("あたり")
                 }else{
                     $("#text3").html("");
@@ -153,7 +160,6 @@
                 $("#text2").html(tmp3);
                 $("#text2").css("font-size" , 40);
                 $("#text2").css("text-align", "center");
-                console.log(tmp2);
             })   
         }
         
@@ -164,13 +170,13 @@
     <h1 class="text-light bg-secondary">おみくじ</h1>
     <div>
         <input type="text" id="data" placeholder="御籤の数(100まで)">
-        <a onclick="enterData()" class="btn btn-outline-secondary" role="button">ランダムで御籤を作る</a>
+        <a onclick="enterData()" class="btn btn-outline-secondary" role="button">ランダムで御籤を作る(0~999)</a>
     </div>
     <div>
         <a onclick="fetchAll()" class="btn btn-outline-secondary" role="buton">中身の表示</a>
-        <a onclick="sortData()" class="btn btn-outline-secondary" role="button">中身を昇順で表示</a>
+        <a onclick="sortData()" class="btn btn-outline-secondary" role="button">中身の並び替え(昇順、降順)</a>
         <a onclick="countData()" class="btn btn-outline-secondary" role="button">入っている御籤の数</a>
-        <a onclick="deleteData()" class="btn btn-outline-secondary" role="button">御籤をすべて消す</a>
+       <button id = "btn" class = "btn2" onclick = "deleteData()">御籤をすべて消す</button>
     </div>
     <div>
         <input type="text" id="data2" placeholder="好きな数字を入力">
@@ -180,8 +186,10 @@
     <div id="display" class="text-light bg-info">
         Results
     </div>
-    <div id="text2" >御籤は整数であり、あたりは10で割り切れる数である。  </br>  *「ランダムで御籤を作る」とき、「御籤の数」に整数を入力してください。
-                         </br>  *「御籤に好きな数字を入れる」とき、「好きな数字を入力」に整数を入力してください。
+    <div id="text2" >御籤は整数であり、あたりは3で割り切れる数である。  </br>  *「ランダムで御籤を作る」を押すとき、「御籤の数」に整数を入力してください。
+                         </br>  *「御籤に好きな数字を入れる」を押すとき、「好きな数字を入力」に整数を入力してください。 
+                         </br> *Resultsの表示が多く、見えにくい時には「入っている御籤の数」を押してください。
+                         </br>*「入っている御籤の数」を押すと入っている御籤の数に応じて黄、水色、緑、白に背景の色が変わります。
     </div>
     <div id="text3">
     </div>
