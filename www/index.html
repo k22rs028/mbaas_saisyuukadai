@@ -169,27 +169,27 @@
 <body>
     <h1 class="text-light bg-secondary">おみくじ</h1>
     <div>
-        <input type="text" id="data" placeholder="御籤の数(100まで)">
-        <a onclick="enterData()" class="btn btn-outline-secondary" role="button">ランダムで御籤を作る(0~999)</a>
+        <input type="text" id="data" placeholder="くじの数(100まで)">
+        <a onclick="enterData()" class="btn btn-outline-secondary" role="button">ランダムでくじを作る(0~999)</a>
     </div>
     <div>
         <a onclick="fetchAll()" class="btn btn-outline-secondary" role="buton">中身の表示</a>
         <a onclick="sortData()" class="btn btn-outline-secondary" role="button">中身の並び替え(昇順、降順)</a>
-        <a onclick="countData()" class="btn btn-outline-secondary" role="button">入っている御籤の数</a>
-       <button id = "btn" class = "btn2" onclick = "deleteData()">御籤をすべて消す</button>
+        <a onclick="countData()" class="btn btn-outline-secondary" role="button">入っているくじの数</a>
+       <button id = "btn" class = "btn2" onclick = "deleteData()">くじをすべて消す</button>
     </div>
     <div>
         <input type="text" id="data2" placeholder="好きな数字を入力">
         <input type="text" id="data3" placeholder="入力数(最低1 最大100)">
-       <a onclick="enterData2()" class="btn btn-outline-secondary" role="button">御籤に好きな数字を入れる</a>
-       <a onclick="random()" class="btn btn-outline-secondary" role="button">御籤を引く</a>
+       <a onclick="enterData2()" class="btn btn-outline-secondary" role="button">、くじに好きな数字を入れる</a>
+       <a onclick="random()" class="btn btn-outline-secondary" role="button">くじを引く</a>
     <div id="display" class="text-light bg-info">
         Results
     </div>
-    <div id="text2" >御籤は整数であり、あたりは3で割り切れる数である。  </br>  *「ランダムで御籤を作る」を押すとき、「御籤の数」に整数を入力してください。
-                         </br>  *「御籤に好きな数字を入れる」を押すとき、「好きな数字を入力」に整数を入力してください。 
-                         </br> *Resultsの表示が多く、見えにくい時には「入っている御籤の数」を押してください。
-                         </br>*「入っている御籤の数」を押すと入っている御籤の数に応じて黄、水色、緑、白に背景の色が変わります。
+    <div id="text2" >くじは整数であり、あたりは3で割り切れる数である。  </br>  *「ランダムでくじを作る」を押すとき、「くじの数」に整数を入力してください。
+                         </br>  *「くじに好きな数字を入れる」を押すとき、「好きな数字を入力」に整数を入力してください。 
+                         </br> *Resultsの表示が多く、見えにくい時には「入っているくじの数」を押してください。
+                         </br>*「入っているくじの数」を押すと入っているくじの数に応じて黄、水色、緑、白に背景の色が変わります。
     </div>
     <div id="text3">
     </div>
